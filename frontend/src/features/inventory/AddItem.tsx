@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
 import Input from '../../components/common/Input';
 import Button from '../../components/common/Button';
 import inventoryService from './inventoryService';
-import supplierService from '../suppliers/supplierService';
+import supplierService from '@/features/suppliers/supplierService';
+
+// Service for handling supplier data
 
 interface AddItemProps {
     onClose: () => void;
@@ -63,14 +66,16 @@ const AddItem: React.FC<AddItemProps> = ({ onClose, onSuccess, initialData }) =>
             setLoading(true);
             if (initialData?.id) {
                 await inventoryService.update(initialData.id, formData);
+                toast.success('Item updated successfully!');
             } else {
                 await inventoryService.create(formData);
+                toast.success('Item added successfully!');
             }
             onSuccess();
             onClose();
         } catch (error) {
             console.error('Failed to save item:', error);
-            alert('Failed to save item. Please try again.');
+            toast.error('Failed to save item. Please try again.');
         } finally {
             setLoading(false);
         }

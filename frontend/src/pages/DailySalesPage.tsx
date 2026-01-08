@@ -78,7 +78,7 @@ const DailySalesPage = () => {
                         </div>
                         <div>
                             <p className="text-sm text-gray-500 font-medium">Today's Revenue</p>
-                            <h3 className="text-2xl font-bold text-gray-900">${summary?.total_revenue?.toFixed(2) || '0.00'}</h3>
+                            <h3 className="text-2xl font-bold text-gray-900">Rs {summary?.total_revenue?.toFixed(2) || '0.00'}</h3>
                         </div>
                     </div>
                 </div>
@@ -145,7 +145,7 @@ const DailySalesPage = () => {
                                             {sale.quantity}
                                         </td>
                                         <td className="px-6 py-4 text-right">
-                                            <span className="font-bold text-gray-900">${sale.total_price.toFixed(2)}</span>
+                                            <span className="font-bold text-gray-900">Rs {sale.total_price.toFixed(2)}</span>
                                         </td>
                                     </tr>
                                 ))

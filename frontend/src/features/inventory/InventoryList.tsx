@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Search, Filter, Plus, MoreVertical, Edit2, Trash2, ArrowUpDown, ChevronLeft, ChevronRight, Package, AlertCircle } from 'lucide-react';
 import { InventoryItem } from '../../types/inventory';
 import Loader from '../../components/common/Loader';
@@ -44,10 +45,11 @@ const InventoryList = () => {
         if (window.confirm(`Are you sure you want to delete ${name}?`)) {
             try {
                 await inventoryService.delete(id);
+                toast.success('Item deleted successfully!');
                 fetchInventory();
             } catch (error) {
                 console.error('Failed to delete item:', error);
-                alert('Failed to delete item.');
+                toast.error('Failed to delete item.');
             }
         }
     };
@@ -174,10 +176,10 @@ const InventoryList = () => {
                                             </div>
                                         </td>
                                         <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-300 font-medium">
-                                            ${typeof item.price === 'number' ? item.price.toFixed(2) : parseFloat(item.price).toFixed(2)}
+                                            Rs {typeof item.price === 'number' ? item.price.toFixed(2) : parseFloat(item.price).toFixed(2)}
                                         </td>
                                         <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-100 font-bold">
-                                            ${(item.price * item.quantity).toFixed(2)}
+                                            Rs {(item.price * item.quantity).toFixed(2)}
                                         </td>
                                         <td className="px-6 py-4 text-right">
                                             <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">

@@ -47,15 +47,6 @@ const Sidebar = () => {
                 </ul>
             </div>
 
-            <div className="absolute bottom-6 left-0 right-0 px-6">
-                <div className="glass-panel rounded-2xl p-4 bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/25 border-none">
-                    <h3 className="font-semibold text-sm">Pro Plan</h3>
-                    <p className="text-xs text-blue-100 mt-1 mb-3 opacity-90">Get advanced analytics and automated ordering.</p>
-                    <button className="w-full py-2 bg-white/10 hover:bg-white/20 rounded-lg text-xs font-medium transition-colors backdrop-blur-sm border border-white/10">
-                        Upgrade Now
-                    </button>
-                </div>
-            </div>
         </aside>
     );
 };

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import Button from '../../components/common/Button';
 import Input from '../../components/common/Input';
 import inventoryService from './inventoryService';
@@ -27,11 +28,12 @@ const UpdateStockModal: React.FC<UpdateStockModalProps> = ({ item, onClose, onSu
                 min_stock_level: item.minStockLevel,
                 supplier: item.supplierId
             });
+            toast.success('Stock updated successfully!');
             onSuccess();
             onClose();
         } catch (error) {
             console.error('Failed to update stock:', error);
-            alert('Failed to update stock. Please try again.');
+            toast.error('Failed to update stock. Please try again.');
         } finally {
             setLoading(false);
         }

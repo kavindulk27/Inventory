@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import Input from '../../components/common/Input';
 import Button from '../../components/common/Button';
-import supplierService from './supplierService';
+import supplierService from '@/features/suppliers/supplierService';
 
 interface AddSupplierProps {
     onClose: () => void;
@@ -30,11 +31,12 @@ const AddSupplier: React.FC<AddSupplierProps> = ({ onClose, onSuccess }) => {
         try {
             setLoading(true);
             await supplierService.create(formData);
+            toast.success('Supplier added successfully!');
             onSuccess();
             onClose();
         } catch (error) {
             console.error('Failed to add supplier:', error);
-            alert('Failed to add supplier. Please try again.');
+            toast.error('Failed to add supplier. Please try again.');
         } finally {
             setLoading(false);
         }

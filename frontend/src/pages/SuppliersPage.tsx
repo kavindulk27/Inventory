@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Search, Plus, Filter, MoreVertical, Phone, Mail, MapPin, Star, Edit2, Trash2, ExternalLink, ChevronLeft, ChevronRight, Building } from 'lucide-react';
 import Loader from '../components/common/Loader';
-import supplierService from '../features/suppliers/supplierService';
+import supplierService from '@/features/suppliers/supplierService';
 import Modal from '../components/common/Modal';
 import AddSupplier from '../features/suppliers/AddSupplier';
 
@@ -52,17 +53,18 @@ const SuppliersPage = () => {
     }, []);
 
     const handleEdit = (id: string, name: string) => {
-        alert(`Edit functionality for ${name} coming in next update.`);
+        toast(`Edit functionality for ${name} coming in next update.`, { icon: 'ℹ️' });
     };
 
     const handleDelete = async (id: string, name: string) => {
         if (window.confirm(`Are you sure you want to remove ${name} from your suppliers?`)) {
             try {
                 await supplierService.delete(id);
+                toast.success('Supplier deleted successfully!');
                 fetchSuppliers();
             } catch (error) {
                 console.error('Failed to delete supplier:', error);
-                alert('Failed to delete supplier.');
+                toast.error('Failed to delete supplier.');
             }
         }
     };

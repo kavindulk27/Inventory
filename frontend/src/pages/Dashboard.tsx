@@ -65,7 +65,7 @@ const Dashboard = () => {
                 <StatCard title="Total Items" value={stats?.totalItems?.toLocaleString() || '0'} icon={Package} color="bg-blue-500" trend="+12%" />
                 <StatCard title="Low Stock Items" value={stats?.lowStockItems?.toString() || '0'} icon={AlertTriangle} color="bg-red-500" trend="-5%" />
                 <StatCard title="Total Suppliers" value={stats?.totalSuppliers?.toString() || '0'} icon={TrendingUp} color="bg-purple-500" trend="+3%" />
-                <StatCard title="Total Value" value={`$${parseFloat(stats?.totalInventoryValue?.toString() || '0').toLocaleString()}`} icon={DollarSign} color="bg-green-500" trend="+8%" />
+                <StatCard title="Total Value" value={`Rs ${parseFloat(stats?.totalInventoryValue?.toString() || '0').toLocaleString()}`} icon={DollarSign} color="bg-green-500" trend="+8%" />
             </div>
 
             <div className="grid gap-6 lg:grid-cols-2">

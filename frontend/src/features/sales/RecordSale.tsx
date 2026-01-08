@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
 import Button from '../../components/common/Button';
 import Input from '../../components/common/Input';
 import salesService from './salesService';
@@ -34,11 +35,12 @@ const RecordSale: React.FC<RecordSaleProps> = ({ item: initialItem, inventoryIte
                 quantity: quantity,
                 total_price: totalPrice
             });
+            toast.success('Sale recorded successfully!');
             onSuccess();
             onClose();
         } catch (error) {
             console.error('Failed to record sale:', error);
-            alert('Failed to record sale. Please try again.');
+            toast.error('Failed to record sale. Please try again.');
         } finally {
             setLoading(false);
         }
@@ -72,7 +74,7 @@ const RecordSale: React.FC<RecordSaleProps> = ({ item: initialItem, inventoryIte
                     <p className="text-lg font-bold text-gray-900 dark:text-gray-100">{selectedItem.name}</p>
                     <div className="flex justify-between mt-2 text-xs">
                         <span className="text-gray-500">Current Stock: {selectedItem.quantity} {selectedItem.unit}</span>
-                        <span className="text-gray-500">Price: ${selectedItem.price.toFixed(2)}</span>
+                        <span className="text-gray-500">Price: Rs {selectedItem.price.toFixed(2)}</span>
                     </div>
                 </div>
             )}
@@ -92,7 +94,7 @@ const RecordSale: React.FC<RecordSaleProps> = ({ item: initialItem, inventoryIte
                     <div className="flex justify-between items-center py-2 border-t border-gray-100 dark:border-gray-800">
                         <span className="text-sm text-gray-500">Total Price:</span>
                         <span className="text-lg font-bold text-gray-900 dark:text-gray-100">
-                            ${(quantity * selectedItem.price).toFixed(2)}
+                            Rs {(quantity * selectedItem.price).toFixed(2)}
                         </span>
                     </div>
                 </>

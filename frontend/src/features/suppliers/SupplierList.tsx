@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Search, Plus, Filter, Phone, Mail, MapPin, Star, Edit2, Trash2, Building } from 'lucide-react';
 import Loader from '../../components/common/Loader';
-import supplierService from './supplierService';
+import supplierService from '@/features/suppliers/supplierService';
 
 interface Supplier {
     id: string;
@@ -55,13 +56,13 @@ const SupplierList = () => {
     }, []);
 
     const handleEdit = (id: string, name: string) => {
-        alert(`Edit Supplier: ${name} (ID: ${id})`);
+        toast(`Edit Supplier: ${name}`, { icon: 'ℹ️' });
     };
 
     const handleDelete = (id: string, name: string) => {
         if (window.confirm(`Are you sure you want to remove ${name} from your suppliers?`)) {
             setSuppliers(prev => prev.filter(s => s.id !== id));
-            alert(`${name} has been removed.`);
+            toast.success(`${name} has been removed.`);
         }
     };
 
